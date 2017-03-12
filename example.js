@@ -4,7 +4,7 @@
 var testmachine = {
     states : {},
     state : null,
-    callbacks : {},
+    eventCallbacks : {},
     setInitialState : function(name){
         this.state = this.states[name];
     },
@@ -12,14 +12,14 @@ var testmachine = {
        this.states[name] = state;
     },
     submit : function (event) {
-        s = this.states[this.state[event].target];
+        let s = this.state[event];
         if(s) {
-
-            this.state = s;
+            this.eventCallbacks[s.send]();
+            this.state = this.states[s.target];
         }
     },
     connectEvent : function(event, func){
-        this.callbacks[event] = func;
+        this.eventCallbacks[event] = func;
     }
 };
 testmachine.addState(
@@ -67,3 +67,15 @@ testmachine.addState(
     }
 );
 testmachine.setInitialState("Reseted");
+testmachine.connectEvent("Start",function(){
+    console.log("Started");
+});
+testmachine.connectEvent("Stop",function(){
+    console.log("Stopped");
+});
+testmachine.connectEvent("Reset",function(){
+    console.log("Reseted");
+});
+testmachine.submit("BStartStop");
+testmachine.submit("BStartStop");
+testmachine.submit("BStartStop");

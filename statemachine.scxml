@@ -1,37 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <scxml xmlns="http://www.w3.org/2005/07/scxml" version="1.0" binding="early" xmlns:qt="http://www.qt.io/2015/02/scxml-ext" name="testmachine" qt:editorversion="4.2.0" initial="Reseted">
-    <qt:editorinfo initialGeometry="-175.14;-79.91;-20;-20;40;40"/>
     <state id="Reseted">
-        <qt:editorinfo geometry="64.70;-86.18;-145;-50;139;100" scenegeometry="64.70;-86.18;-80.30;-136.18;139;100"/>
         <transition type="external" event="BStartStop" target="Running">
-            <qt:editorinfo endTargetFactors="76.99;27.15"/>
             <send event="Start"/>
         </transition>
     </state>
     <state id="Running">
-        <qt:editorinfo geometry="267.37;-226.72;-60;-50;120;100" scenegeometry="267.37;-226.72;207.37;-276.72;120;100"/>
         <transition type="external" event="BPause" target="Paused">
-            <qt:editorinfo localGeometry="116.04;-324.14"/>
             <send event="Pause"/>
         </transition>
         <transition type="external" event="BStartStop" target="Stopped">
-            <qt:editorinfo endTargetFactors="23.02;18.35"/>
             <send event="Stop"/>
         </transition>
     </state>
     <state id="Paused">
-        <qt:editorinfo geometry="585.08;-461.54;-60;-50;120;100" scenegeometry="585.08;-461.54;525.08;-511.54;120;100"/>
         <transition type="external" event="BPause" target="Running">
-            <qt:editorinfo localGeometry="-119.56;52.04" endTargetFactors="82.98;41.21"/>
             <send event="Resume"/>
         </transition>
         <transition type="external" event="BStartStop" target="Stopped">
-            <qt:editorinfo endTargetFactors="75.50;21.87"/>
             <send event="Stop"/>
         </transition>
     </state>
     <state id="Stopped">
-        <qt:editorinfo geometry="385.63;-24.84;-60;-50;120;100" scenegeometry="385.63;-24.84;325.63;-74.84;120;100"/>
         <transition type="external" event="BStartStop" target="Reseted">
             <send event="Reset"/>
         </transition>

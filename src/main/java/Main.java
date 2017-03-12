@@ -17,13 +17,9 @@ public class Main {
                 System.out.println("Veuillez specifier un fichier .scxml en argument");
                 return;
             }
-            SCXML2JS.convert(args[0],"out.js");
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ModelException e) {
-            e.printStackTrace();
-        } catch (XMLStreamException e) {
+            SCXML2JS scxml2js = new SCXML2JS(args[0],"out.js");
+            scxml2js.convert();
+        } catch (IOException | ModelException | XMLStreamException e) {
             e.printStackTrace();
         }
     }
