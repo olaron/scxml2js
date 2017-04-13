@@ -16,6 +16,7 @@
                 var ms = ("0"+time%1000).slice(-3);
                 document.getElementById("time").textContent = ""+h+":"+m+":"+s+"."+ms;
             };
+
             testmachine.connectEvent("Start", function () {
                 startTime = Date.now();
                 updateTimer = setInterval(update,1);
@@ -38,6 +39,7 @@
                 clearInterval(updateTimer);
                 document.getElementById("pause").textContent = "Resume";
             });
+
             document.getElementById("start").onclick = function () {
                 testmachine.submit("BStartStop");
             };
