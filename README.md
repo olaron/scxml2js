@@ -3,10 +3,10 @@
 ## Prérequis
 
 Ce projet a été réalisé avec
-**Java 1.8**, **Maven 3.3.9** pour la compilation,
+**Java 1.8** et **Maven 3.3.9** pour la compilation,
 ainsi que **NodeJS 4.2.6** pour les tests
 
-## Fonctionnalités supprotés
+## Fonctionnalités supportés
 
 Le programme supporte les machine à états comprenant :
 - des états hierarchiques
@@ -17,16 +17,18 @@ Dans le cas oú plusieur transitions dans plusieur états parallèlisés peuvent
 - des transitions contenant les actions `<send>` `<log>`
 
 Toutes les transitions agissent comme des transition de type `external` pour le moment.
+
 Le contenu de l'attribut `expr` de l'action `<log>` sera évalué en tant qu'expression et affichera le résultat dans la console.
 
 - des transitions avec des `<send>` temporisés ainsi que `<cancel>`
 
-Les actions `<send>` doivent avoir les attributs `id` et `delay` spécifiés pour être temporisé. Si au moins l'un des deux est manquant, le `<send>` ne sera pas temporisé.
+Les actions `<send>` doivent avoir les attributs `id` et `delay` spécifiés 
+pour être temporisé. Si au moins l'un des deux est manquant, 
+le `<send>` ne sera pas temporisé et s'exécutera normalement.
 
 - la possibilité définir une fonction qui sera exécuté lors de
 l'entrée ou la sortie d'un état en particulier, ou lors de
 l'envoi d'un évènement en particulier
-
 
 ## Conditions sur le fichier SCXML
 
