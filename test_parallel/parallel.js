@@ -213,4 +213,4 @@ new FSM("Start").addTransition("c","Parallel",
 [{"type" : "send","action" : {"event":"C",}},])
 )
 .setInitialState("Start");
-exports.parallel = parallel;
+if(typeof exports !== 'undefined')exports.parallel = parallel;

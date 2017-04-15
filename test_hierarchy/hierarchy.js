@@ -199,4 +199,4 @@ new FSM("BB").addTransition("b","AA",
 )
 .setInitialState("BA"))
 .setInitialState("A");
-exports.hierarchy = hierarchy;
+if(typeof exports !== 'undefined')exports.hierarchy = hierarchy;

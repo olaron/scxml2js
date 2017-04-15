@@ -185,4 +185,4 @@ new FSM("Ticking").addTransition("Tick","Ticking",
 [{"type" : "cancel","action" : {"sendid":"tick",}},{"type" : "log","action" : {"expr":"\"Stop\"",}},])
 )
 .setInitialState("Stopped");
-exports.delay = delay;
+if(typeof exports !== 'undefined')exports.delay = delay;
