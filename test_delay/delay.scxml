@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scxml xmlns="http://www.w3.org/2005/07/scxml" version="1.0" binding="early" name="delay">
+    <state id="Stopped">
+        <transition type="external" event="Start" target="Ticking">
+            <send event="Tick" id="tick" delay="1000"/>
+            <send event="Stop" id="stop" delay="5500"/>
+            <log expr="&quot;Start&quot;"/>
+        </transition>
+    </state>
+    <state id="Ticking">
+        <transition type="external" event="Tick" target="Ticking" >
+            <send event="Tick" id="tick" delay="1000"/>
+            <log expr="&quot;Tick&quot;"/>
+        </transition>
+        <transition type="external" event="Stop" target="Stopped">
+            <cancel sendid="tick"/>
+            <log expr="&quot;Stop&quot;"/>
+        </transition>
+    </state>
+</scxml>

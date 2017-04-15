@@ -17,9 +17,9 @@ Le test commence par associer des fonctions à
 chaque onEntry et onExit de tous les états de la machine
 ainsi qu'aux transitions a et b
 
-Le test envoie ensuite les évènements suivants à la machine: `a b b a b` dans cet ordre
+Le test envoie ensuite les évènements `a b b a b` à la machine, dans cet ordre
 
-Le résultat attendu est le suivant:
+## Résultat attendu
 
 ```
  - Machine start

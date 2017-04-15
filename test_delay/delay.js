@@ -44,9 +44,9 @@ function FSM(name){
         this.deepStates = this.deepStates.union(machine.deepStates);
         return this;
     };
-    this.addTransition = function(event_in,target,action){
+    this.addTransition = function(event_in,target,actions){
           this.transitions[event_in] = {
-              action : action,
+              actions : actions,
               target : target
           };
           return this;
@@ -77,8 +77,9 @@ function FSM(name){
     };
 
     this.doAction = function(actions){
-        for(var type in actions){
-            let action = actions[type];
+        for(var i in actions){
+            let type = actions[i].type;
+            let action = actions[i].action;
             if(type === "send"){
                 if(action.id && action.delay){
                     delayedEvents[action.id] =
@@ -102,7 +103,7 @@ function FSM(name){
     this.move = function(transition,down){
         if(this.deepStates.has(transition.target)){
             if(!down){
-                this.doAction(transition.action);
+                this.doAction(transition.actions);
             }
             if(this.states.has(transition.target)){
                 for(var state of this.states){
@@ -168,29 +169,15 @@ function FSM(name){
         onExitCallbacks[state] = func;
     };
 }
-var hierarchy = new FSM("hierarchy").addState(
-new FSM("A").addState(
-new FSM("AA").addTransition("a","AB",
-{"send":{"event":"A",},})
+var delay = new FSM("delay").addState(
+new FSM("Stopped").addTransition("Start","Ticking",
+[{"type" : "send","action" : {"delay":"1000","event":"Tick","id":"tick",}},{"type" : "send","action" : {"delay":"5500","event":"Stop","id":"stop",}},{"type" : "log","action" : {"expr":"\"Start\"",}},])
 )
 .addState(
-new FSM("AB").addTransition("a","AA",
-{"send":{"event":"A",},})
+new FSM("Ticking").addTransition("Tick","Ticking",
+[{"type" : "send","action" : {"delay":"1000","event":"Tick","id":"tick",}},{"type" : "log","action" : {"expr":"\"Tick\"",}},])
+.addTransition("Stop","Stopped",
+[{"type" : "cancel","action" : {"sendid":"tick",}},{"type" : "log","action" : {"expr":"\"Stop\"",}},])
 )
-.addTransition("b","BA",
-{"send":{"event":"B",},})
-.setInitialState("AA"))
-.addState(
-new FSM("B").addState(
-new FSM("BA").addTransition("a","BB",
-{"send":{"event":"A",},})
-)
-.addState(
-new FSM("BB").addTransition("b","AA",
-{"send":{"event":"B",},})
-.addTransition("a","BA",
-{"send":{"event":"A",},})
-)
-.setInitialState("BA"))
-.setInitialState("A");
-exports.hierarchy = hierarchy;
+.setInitialState("Stopped");
+exports.delay = delay;
