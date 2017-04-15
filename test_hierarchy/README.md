@@ -7,7 +7,7 @@ Le test se lance avec le script `run_test.sh`
 Ce script va appeler le programme java pour 
 convertir le fichier `hierarchy.scxml` en `hierarchy.js`
 
-Le script va ensuite lancer `test.js` avec `node` pour executer le test
+Le script va ensuite lancer `test.js` avec `node` pour exécuter le test
 
 ## Test
 

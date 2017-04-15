@@ -23,7 +23,7 @@ Le contenu de l'attribut `expr` de l'action `<log>` sera évalué en tant qu'exp
 
 Les actions `<send>` doivent avoir les attributs `id` et `delay` spécifiés pour être temporisé. Si au moins l'un des deux est manquant, le `<send>` ne sera pas temporisé.
 
-- la possibilité définir une fonction qui sera executé lors de
+- la possibilité définir une fonction qui sera exécuté lors de
 l'entrée ou la sortie d'un état en particulier, ou lors de
 l'envoi d'un évènement en particulier
 
@@ -38,13 +38,13 @@ La présence de toute autre balises peut avoir des effets imprévus
 
 ## Compilation
 
-Le programme se compile en executant le script `build.sh`
+Le programme se compile en exécutant le script `build.sh`
 
-Cela va créer un ficjier `.jar` éxecutable dans un dossier `target`
+Cela va créer un fichier `.jar` exécutable dans un dossier `target`
 
 ## Utilisation
 
-Le programme se lance en executant le script
+Le programme se lance en exécutant le script
 `run.sh <fichier scxml> [fichier de destination]`
 
 Si le fichier de destination n'est pas spécifié, il sera `out.js` par défaut
@@ -57,7 +57,7 @@ Cet objet comprend les méthodes suivantes:
 
 - `fsm.start()`
 
-Permet de démarer la machine à états.
+Permet de démarrer la machine à états.
 
 - `fsm.submit(event)`
 
@@ -65,9 +65,9 @@ Permet d'envoyer l'évènement `event` à la machine.
 
 - `fsm.connectEvent(event,func)`
 
-Permet à la machine d'executer la fonction `func` lors de l'envoi d'un évènement `event` (via un `<send>` ou un appel à `submit(event)`).
+Permet à la machine d'exécuter la fonction `func` lors de l'envoi d'un évènement `event` (via un `<send>` ou un appel à `submit(event)`).
 
 - `fsm.connectOnEntry(state,func)`
 - `fsm.connectOnExit(state,func)`
 
-Permet à la machine d'éxecuter la fonction `func` lors de léntrée ou la sortie de l'état `state`.
+Permet à la machine d'exécuter la fonction `func` lors de léntrée ou la sortie de l'état `state`.
