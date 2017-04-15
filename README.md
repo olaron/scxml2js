@@ -9,7 +9,7 @@ ainsi que **NodeJS 4.2.6** pour les tests
 ## Fonctionnalités supportés
 
 Le programme supporte les machine à états comprenant :
-- des états hierarchiques
+- des états hiérarchiques
 - des états `<parallel>`
 
 Dans le cas oú plusieur transitions dans plusieur états parallèlisés peuvent réagir à un même évènement, seulement l'une des deux transitions s'effectuera
