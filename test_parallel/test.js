@@ -79,7 +79,7 @@ parallel.connectOnExit("Parallel",function(){
 });
 
 console.log(" - Machine start");
-parallel.activate(true);
+parallel.start();
 console.log(" - Submit c");
 parallel.submit("c");
 console.log(" - Submit a");

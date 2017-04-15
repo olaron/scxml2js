@@ -44,7 +44,7 @@ hierarchy.connectOnExit("BB",function(){
 });
 
 console.log(" - Machine start");
-hierarchy.activate(true);
+hierarchy.start();
 console.log(" - Submit a");
 hierarchy.submit("a");
 console.log(" - Submit b");

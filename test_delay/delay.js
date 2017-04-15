@@ -51,6 +51,8 @@ function FSM(name){
           };
           return this;
     };
+    
+    
 
     this.activate = function(recursive){
         if(onEntryCallbacks[this.name]){
@@ -167,6 +169,9 @@ function FSM(name){
     };
     this.connectOnExit = function(state, func){
         onExitCallbacks[state] = func;
+    };
+    this.start = function(){
+        this.activate(true);
     };
 }
 var delay = new FSM("delay").addState(

@@ -1,4 +1,4 @@
 var delay = require("./delay.js").delay;
 
-delay.activate(true);
+delay.start();
 delay.submit("Start");

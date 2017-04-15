@@ -70,6 +70,8 @@ public class SCXML2JS {
                     "          };\n" +
                     "          return this;\n" +
                     "    };\n" +
+                    "    \n" +
+                    "    \n" +
                     "\n" +
                     "    this.activate = function(recursive){\n" +
                     "        if(onEntryCallbacks[this.name]){\n" +
@@ -186,6 +188,9 @@ public class SCXML2JS {
                     "    };\n" +
                     "    this.connectOnExit = function(state, func){\n" +
                     "        onExitCallbacks[state] = func;\n" +
+                    "    };\n" +
+                    "    this.start = function(){\n" +
+                    "        this.activate(true);\n" +
                     "    };\n" +
                     "}";
 
