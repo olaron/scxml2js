@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scxml xmlns="http://www.w3.org/2005/07/scxml" version="1.0" binding="early" name="story" qt:editorversion="4.2.0" xmlns:qt="http://www.qt.io/2015/02/scxml-ext">
+    <state id="Story">
+        <parallel id="Room">
+            <state id="Clock">
+                <state id="Ticker">
+                    <transition type="external" event="Tick" target="Ticker">
+                        <send event="Tick" delay="1000" id="tick"/>
+                        <log expr="tick"/>
+                    </transition>
+                    <transition type="external" event="Stop" target="Stopped">
+                        <cancel sendid="tick"/>
+                    </transition>
+                </state>
+                <state id="Stopped">
+                </state>
+            </state>
+            <state id="Bomb">
+                <state id="Start">
+                    <transition type="external" event="LookTimer" target="Timer"/>
+                    <transition type="external" event="LookButtons" target="Buttons"/>
+                </state>
+                <state id="Timer">
+                    <transition type="external" event="LookButtons" target="Buttons"/>
+                </state>
+                <state id="Buttons">
+                    <transition type="external" event="LookTimer" target="Timer">
+                    </transition>
+                </state>
+            </state>
+            <transition type="external" event="Boom" target="Dead">
+            </transition>
+            <transition type="external" event="Escape" target="GoodEnd"/>
+        </parallel>
+        <state id="Dead">
+            <transition type="external" event="Restart" target="Room">
+            </transition>
+        </state>
+        <state id="GoodEnd">
+            <transition type="external" event="Restart" target="Room">
+            </transition>
+        </state>
+    </state>
+</scxml>
