@@ -8,9 +8,13 @@ public class Main {
                 System.out.println("Veuillez specifier un fichier .scxml en argument");
                 return;
             }
-            SCXML2JS scxml2js = new SCXML2JS(args[0],"out.js");
+            String output = "out.js";
+            if (args.length >= 2){
+                output = args[1];
+            }
+            SCXML2JS scxml2js = new SCXML2JS(args[0],output);
             scxml2js.convert();
-            System.out.println("-> out.js");
+            System.out.println("-> "+output);
         } catch (Exception e) {
             e.printStackTrace();
         }
