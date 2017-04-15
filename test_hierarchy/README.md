@@ -1,6 +1,6 @@
-#Test d'états hierarchiques
+# Test d'états hierarchiques
 
-##Fonctionnement
+## Fonctionnement
 
 Le test se lance avec le script `run_test.sh`
 
@@ -9,9 +9,9 @@ convertir le fichier `hierarchy.scxml` en `hierarchy.js`
 
 Le script va ensuite lancer `test.js` avec `node` pour executer le test
 
-##Test
+## Test
 
-![Statemachine](http://i.imgur.com/pZl4TVo.png "Statemachine")
+<img src="http://i.imgur.com/pZl4TVo.png" title="Statemachine" alt="Statemachine" width="600px"/>
 
 Le test commence par associer des fonctions à 
 chaque onEntry et onExit de tous les états de la machine
