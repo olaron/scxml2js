@@ -45,14 +45,12 @@ function FSM(name){
         return this;
     };
     this.addTransition = function(event_in,target,actions){
-          this.transitions[event_in] = {
-              actions : actions,
-              target : target
-          };
-          return this;
+        this.transitions[event_in] = {
+            actions : actions,
+            target : target
+        };
+        return this;
     };
-    
-    
 
     this.activate = function(recursive){
         if(onEntryCallbacks[this.name]){
@@ -86,7 +84,8 @@ function FSM(name){
                 if(action.id && action.delay){
                     delayedEvents[action.id] =
                         setTimeout(function(rootState,event){
-                          rootState.submit(event);},
+                                rootState.submit(event);
+                                },
                             action.delay,
                             states[this.root],
                             action.event
