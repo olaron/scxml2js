@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scxml xmlns="http://www.w3.org/2005/07/scxml" version="1.0" binding="early" name="parallel" initial="Start">
+    <parallel id="Parallel">
+        <state id="B" initial="BA">
+            <state id="BC">
+                <transition type="external" event="b" target="BA">
+                    <send event="B"/>
+                </transition>
+            </state>
+            <state id="BB">
+                <transition type="external" event="b" target="BC">
+                    <send event="B"/>
+                </transition>
+            </state>
+            <state id="BA">
+                <transition type="external" event="b" target="BB">
+                    <send event="B"/>
+                </transition>
+                <transition type="external" event="c" target="C">
+                    <send event="C"/>
+                </transition>
+            </state>
+        </state>
+        <state id="A" initial="AA">
+            <state id="AB">
+                <transition type="external" event="a" target="AC">
+                    <send event="A"/>
+                </transition>
+            </state>
+            <state id="AC">
+                <transition type="external" event="a" target="AA">
+                    <send event="A"/>
+                </transition>
+            </state>
+            <state id="AA">
+                <transition type="external" event="a" target="AB">
+                    <send event="A"/>
+                </transition>
+            </state>
+        </state>
+    </parallel>
+    <state id="C">
+    </state>
+    <state id="Start">
+        <transition type="external" event="c" target="Parallel">
+            <send event="C"/>
+        </transition>
+    </state>
+</scxml>

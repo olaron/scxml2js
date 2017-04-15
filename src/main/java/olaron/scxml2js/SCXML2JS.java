@@ -214,7 +214,12 @@ public class SCXML2JS {
     }
 
     private String getAttribute(Node node, String attribute){
-        return node.getAttributes().getNamedItem(attribute).getNodeValue();
+        try {
+            return node.getAttributes().getNamedItem(attribute).getNodeValue();
+        }catch (Exception e){
+            // TODO Faire ça mieux
+            return null; // Si l'attribut recherché n'éxiste pas, on renvoie null
+        }
     }
 
     public void convert() throws IOException{
@@ -224,7 +229,10 @@ public class SCXML2JS {
         write(setup+"\n");
         write("var "+machineName+" = new FSM(\""+machineName+"\")");
         Node initialState = convertChilds(rootNode.getChildNodes());
-        write(".setInitialState(\""+getAttribute(initialState,"id")+"\");\n");
+        String initialId = getAttribute(initialState,"id");
+        String initialAttribute = getAttribute(rootNode,"initial");
+        if(initialAttribute != null) initialId = initialAttribute;
+        write(".setInitialState(\""+initialId+"\");\n");
         write("exports."+machineName+" = "+machineName+";\n");
     }
 
@@ -264,7 +272,10 @@ public class SCXML2JS {
         if(childs.getLength() > 0){
             Node initialState = convertChilds(childs);
             if(initialState != null) {
-                write(".setInitialState(\"" + getAttribute(initialState, "id") + "\")");
+                String initialId = getAttribute(initialState,"id");
+                String initialAttribute = getAttribute(state,"initial");
+                if(initialAttribute != null) initialId = initialAttribute;
+                write(".setInitialState(\"" + initialId + "\")");
             }
         }
         write(")\n");
