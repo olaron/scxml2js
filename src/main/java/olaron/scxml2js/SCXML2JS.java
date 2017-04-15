@@ -238,7 +238,7 @@ public class SCXML2JS {
         String initialAttribute = getAttribute(rootNode,"initial");
         if(initialAttribute != null) initialId = initialAttribute;
         write(".setInitialState(\""+initialId+"\");\n");
-        write("exports."+machineName+" = "+machineName+";\n");
+        write("if(typeof exports !== 'undefined')exports."+machineName+" = "+machineName+";\n");
     }
 
     private Node convertChilds(NodeList childs){

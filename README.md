@@ -2,7 +2,8 @@
 
 ## Prérequis
 
-Ce projet a été réalisé avec **Java 1.8**, **Maven 3.3.9**
+Ce projet a été réalisé avec
+**Java 1.8**, **Maven 3.3.9** pour la compilation,
 ainsi que **NodeJS 4.2.6** pour les tests
 
 ## Fonctionnalités supprotés
@@ -13,11 +14,12 @@ Le programme supporte les machine à états comprenant :
 
 Dans le cas oú plusieur transitions dans plusieur états parallèlisés peuvent réagir à un même évènement, seulement l'une des deux transitions s'effectuera
 
-- les transitions contenant les actions `<send>` `<log>`
+- des transitions contenant les actions `<send>` `<log>`
 
+Toutes les transitions agissent comme des transition de type `external` pour le moment.
 Le contenu de l'attribut `expr` de l'action `<log>` sera évalué en tant qu'expression et affichera le résultat dans la console.
 
-- les transitions avec des `<send>` temporisés ainsi que `<cancel>`
+- des transitions avec des `<send>` temporisés ainsi que `<cancel>`
 
 Les actions `<send>` doivent avoir les attributs `id` et `delay` spécifiés pour être temporisé. Si au moins l'un des deux est manquant, le `<send>` ne sera pas temporisé.
 

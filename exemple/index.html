@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Story</title>
+    <script src="story.js"></script>
+    <script>
+        var time = 20;
+        function display(id,display){
+            document.getElementById(id).style.display = display;
+        }
+        function setText(id,text){
+            document.getElementById(id).innerHTML = text;
+        }
+        function displayText(text,c1,c2,c3){
+            display("timer", "none");
+            setText("text",text);
+            display("text","initial");
+            if(c1){
+                setText("c1",c1);
+                display("c1","initial");
+            }else{
+                display("c1","none");
+            }
+            if(c2){
+                setText("c2",c2);
+                display("c2","initial");
+            }else{
+                display("c2","none");
+            }
+            if(c3){
+                setText("c3",c3);
+                display("c3","initial");
+            }else{
+                display("c3","none");
+            }
+        }
+        window.onload = function() {
+            document.getElementById("c1").onclick = function () {
+                story.submit("C1");
+            };
+            document.getElementById("c2").onclick = function () {
+                story.submit("C2");
+            };
+            document.getElementById("c3").onclick = function () {
+                story.submit("C3");
+            };
+            story.connectEvent("Tick",function(){
+               time = time - 1;
+               setText("timer","00:00:"+time);
+               if(time === 0){
+                   story.submit("Boom");
+               }
+            });
+            story.connectOnEntry("Start",function(){
+                displayText("Aventure dont vous êtes le héros","Commencer");
+            });
+            story.connectOnEntry("Dead",function(){
+                displayText("Le compte à rebours est arrivé à 00:00:0, et cela vous rend triste. En plus cette page web est bien moche. :(<br/>(Mauvaise fin)","Recommencer");
+            });
+            story.connectOnEntry("GoodEnd",function(){
+                displayText("Le compte à rebours s'est arrêté à 00:00:"+time+", et cela vous rend content.<br/>(Bonne fin)","Recommencer");
+            });
+            story.connectOnEntry("Intro",function(){
+                time = 20;
+                displayText("Vous vous réveillez dans une salle dans la quelle se trouve un compte à rebours et d'un panneau de contole.",
+                    "Regarder le compte à rebours","Regarder le panneau de controle");
+            });
+            story.connectOnEntry("Timer",function(){
+                displayText("", "Regarder le panneau de controle");
+                setText("timer","00:00:"+time);
+                display("timer","initial");
+            });
+            story.connectOnEntry("Buttons",function(){
+                displayText(
+                    "Vous faites face à un panneau de controle sur lequel se trouve "+
+                    "une tripotée de boutons de toutes les couleurs et de toutes les formes "+
+                    "clignotants rapidement de manière semblant aléatoire."+
+                    "<br/>Parmis ces boutons, il y en à un qui attire votre attention plus que les autres.",
+                    "Regarder le compte à rebours","","Appuyer sur le bouton \"Stop\"");
+                display("c2","none");
+            });
+            story.start();
+        }
+    </script>
+
+</head>
+<body>
+    <h1 id="timer"></h1>
+    <p id="text"></p>
+    <div id="choices">
+        <button type="button" id="c1"></button>
+        <button type="button" id="c2"></button>
+        <button type="button" id="c3"></button>
+    </div>
+</body>
+</html>

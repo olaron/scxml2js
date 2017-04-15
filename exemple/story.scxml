@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scxml xmlns="http://www.w3.org/2005/07/scxml" version="1.0" binding="early" name="story" qt:editorversion="4.2.0" xmlns:qt="http://www.qt.io/2015/02/scxml-ext" initial="Start">
+    <state id="Story">
+        <parallel id="Room">
+            <state id="Clock">
+                <state id="Ticker">
+                    <transition type="external" event="Tick" target="Ticker">
+                        <send event="Tick" delay="1000" id="tick"/>
+                        <log expr="time"/>
+                    </transition>
+                </state>
+            </state>
+            <state id="Bomb">
+                <state id="Intro">
+                    <transition type="external" event="C1" target="Timer"/>
+                    <transition type="external" event="C2" target="Buttons"/>
+                </state>
+                <state id="Timer">
+                    <transition type="external" event="C1" target="Buttons"/>
+                </state>
+                <state id="Buttons">
+                    <transition type="external" event="C1" target="Timer">
+                    </transition>
+                </state>
+            </state>
+            <transition type="external" event="Boom" target="Dead">
+            </transition>
+            <transition type="external" event="C3" target="GoodEnd">
+                <cancel sendid="tick"/>
+            </transition>
+        </parallel>
+        <state id="Dead">
+            <transition type="external" event="C1" target="Start">
+            </transition>
+        </state>
+        <state id="GoodEnd">
+            <transition type="external" event="C1" target="Start">
+            </transition>
+        </state>
+    </state>
+    <state id="Start">
+        <transition type="external" event="C1" target="Story">
+            <send event="Tick" id="tick" delay="1000"/>
+        </transition>
+    </state>
+</scxml>
